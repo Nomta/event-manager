@@ -1,18 +1,24 @@
 <template>
-  <img :src="src" class="icon" :alt="alt" />
+  <img :src="icon" class="icon" :alt="type" />
 </template>
 
 <script>
+import { PATH_TO_ICONS } from '@/services/app.config'
 
 export default {
   name: 'UiIcon',
 
   props: {
-    src: {
+    name: {
       type: String,
       required: true,
     },
-    alt: String
+  },
+
+  computed: {
+    icon() {
+      return require(`@/${PATH_TO_ICONS}icon-${this.name}.svg`)
+    },
   },
 }
 </script>
