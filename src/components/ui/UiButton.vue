@@ -1,5 +1,6 @@
 <template>
-  <button type="button" class="button" :class="isInverted" :style="style" :aria-label="label" @click="handleClick">
+  <button type="button" class="button" :class="[buttonClass, isInverted]" :style="style" :aria-label="label"
+    @click="handleClick">
     <slot>
       <span>{{ text }}</span>
     </slot>
@@ -7,6 +8,11 @@
 </template>
 
 <script>
+const BUTTON_TYPES = {
+  primary: 'button_primary',
+  success: 'button_success',
+}
+
 export default {
   name: 'UiButton',
 
@@ -17,12 +23,19 @@ export default {
     },
     text: String,
     ariaLabel: String,
-    color: String,
+
+    type: {
+      type: String,
+      validator: (value) => Object.keys(BUTTON_TYPES).includes(value),
+    },
   },
 
   emits: ['click'],
 
   computed: {
+    buttonClass() {
+      return BUTTON_TYPES[this.type];
+    },
     isInverted() {
       if (this.inverted) {
         return 'button_inverted'
@@ -31,9 +44,6 @@ export default {
     label() {
       return this.ariaLabel ?? this.text
     },
-    style() {
-      return { color: this.color }
-    }
   },
 
   methods: {
@@ -48,32 +58,44 @@ export default {
 .button {
   --base-color: currentColor;
   --inverted-color: var(--white, white);
+  --height: 2.44em;
+  --padding: 0.44em;
+  --padding-2: 0.55em;
+  --rad: calc(var(--height) / 2);
 
-  height: 44px;
-  min-width: 48px;
+  height: var(--height);
+  min-width: 2.7em;
   border: 2px solid var(--base-color);
-  padding: 8px;
-  font-size: 18px;
+  padding: var(--padding);
+  font-size: 1.125rem;
   background-color: var(--inverted-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition-duration: 0.3s;
-  transition-property: background-color, fill;
+  gap: var(--padding);
+  transition-duration: var(--transition-duration);
+  transition-property: background-color;
   box-shadow: none;
   outline: none;
   cursor: pointer;
 }
 
+.button_primary {
+  color: var(--blue);
+}
+
+.button_success {
+  color: var(--green);
+}
+
 .button:first-of-type {
-  border-radius: 22px 0 0 22px;
-  padding-left: 10px;
+  border-radius: var(--rad) 0 0 var(--rad);
+  padding-left: var(--padding-2);
 }
 
 .button:last-of-type {
-  border-radius: 0 22px 22px 0;
-  padding-right: 10px;
+  border-radius: 0 var(--rad) var(--rad) 0;
+  padding-right: var(--padding-2);
 }
 
 .button:not(:first-of-type) {
@@ -84,13 +106,13 @@ export default {
   border-right-width: 1px;
 }
 
-.button:first-of-type {
-  border-radius: 22px 0 0 22px;
-  padding-left: 10px;
+.button:only-of-type {
+  border-radius: var(--rad);
 }
 
-.button:only-of-type {
-  border-radius: 22px;
+.button :slotted(*) {
+  transition-duration: var(--transition-duration);
+  transition-property: color, fill;
 }
 
 .button :slotted(svg) {

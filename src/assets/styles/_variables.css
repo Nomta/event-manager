@@ -1,4 +1,5 @@
 :root {
+  /* colors */
   --white: #fff;
   --grey: #cbd4e9;
   --grey-light: #f8f9fc;
@@ -15,4 +16,10 @@
   --red-light: #e8656f;
   --green: #24a37e;
   --green-light: #dff2ec;
+
+  /* transition */
+  --transition-duration: 0.3s;
+
+  /* other */
+  --border-radius: 8px;
 }

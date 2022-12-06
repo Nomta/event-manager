@@ -36,10 +36,14 @@ export default {
 
 <style scoped>
 .card {
+  --default-cover: url('@/assets/images/undraw_conference_speaker.svg');
+  --bg-url: var(--default-cover);
+
   display: flex;
   flex-direction: row;
+  background-color: var(--white);
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
-  transition: box-shadow ease 0.2s;
+  transition: box-shadow ease var(--transition-duration);
 }
 
 .card:hover {
@@ -54,15 +58,15 @@ export default {
 }
 
 .card__cover {
-  --bg-url: ;
   background-size: cover;
   background-position: center;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-url);
+  background-image:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    var(--bg-url);
   font-family: Roboto, sans-serif;
   font-weight: 700;
-  font-size: 36px;
-  /* 40px */
-  line-height: 44px;
+  font-size: 2.25rem;
+  line-height: 1.2;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -70,14 +74,15 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   text-align: center;
-  color: white;
+  color: var(--white);
   overflow: hidden;
   position: relative;
-  min-height: 218px;
+  min-height: 13.625rem;
 }
 
 .card__content {
-  padding: 50px;
+  padding: 3.125rem;
+  border-left: 5px solid var(--main-color);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -94,7 +99,7 @@ export default {
   }
 
   .card__content {
-    padding: 40px 24px 32px;
+    padding: 2.5rem 1.5rem 2rem;
   }
 }
 </style>
