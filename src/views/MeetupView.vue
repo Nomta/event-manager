@@ -1,6 +1,6 @@
 <template>
   <div class="page-meetup">
-    <div v-if="meetup">{{ meetup.title }}</div>
+    <MeetupViewComponent v-if="meetup" :meetup="meetup" />
     <UiContainer v-else-if="loading">
       <UiAlert>Загрузка...</UiAlert>
     </UiContainer>
@@ -13,16 +13,17 @@
 <script>
 import UiContainer from '@/components/ui/UiContainer'
 import UiAlert from '@/components/ui/UiAlert'
-
-const meetups = [
-  { id: 2, title: 'Демо-Митап', },
-  { id: 1, title: 'MSK VUE.JS MEETUP #1', },
-]
+import MeetupViewComponent from '@/components/MeetupView'
+import meetups from '@/api/meetups'
 
 const TESTING_TIMEOUT = 500
 
 export default {
   name: 'MeetupView',
+
+  components: {
+    MeetupViewComponent,
+  },
 
   props: {
     meetupId: {

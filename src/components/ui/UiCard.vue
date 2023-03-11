@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 .card {
-  --default-cover: url('@/assets/images/undraw_conference_speaker.svg');
+  --default-cover: url('@/assets/images/undraw_speaker.svg');
   --bg-url: var(--default-cover);
 
   display: flex;
