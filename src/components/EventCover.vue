@@ -1,12 +1,12 @@
 <template>
-  <div class="meetup-cover" :style="style">
-    <h1 class="meetup-cover__title">{{ title }}</h1>
+  <div class="event-cover" :style="style">
+    <h1 class="event-cover__title">{{ title }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MeetupCover',
+  name: 'EventCover',
 
   props: {
     title: String,
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped>
-.meetup-cover {
+.event-cover {
   --default-cover: url('@/assets/images/undraw_speaker.svg');
   --bg-url: var(--default-cover);
 
@@ -42,7 +42,7 @@ export default {
   margin: 0 auto;
 }
 
-.meetup-cover__title {
+.event-cover__title {
   color: var(--white);
   font-family: Roboto, sans-serif;
   font-weight: 700;
@@ -53,7 +53,7 @@ export default {
 }
 
 @media all and (min-width: 992px) {
-  .meetup-cover__title {
+  .event-cover__title {
     font-size: 72px;
     line-height: 84px;
   }

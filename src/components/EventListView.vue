@@ -13,9 +13,9 @@
         </div>
       </div>
     </div>
-    <template v-if="meetups">
-      <component v-if="filteredMeetups.length" :is="currentViewComponent" :meetups="filteredMeetups" />
-      <UiAlert v-else>Митапов по заданным условиям не найдено...</UiAlert>
+    <template v-if="events">
+      <component v-if="filteredEvents.length" :is="currentViewComponent" :events="filteredEvents" />
+      <UiAlert v-else>Событий не найдено</UiAlert>
     </template>
     <UiAlert v-else text="Загрузка..." />
   </UiContainer>
@@ -23,14 +23,14 @@
 
 <script>
 import UiContainer from '@/components/ui/UiContainer'
-import MeetupsList from '@/components/MeetupsList'
-import MeetupsCalendar from '@/components/MeetupsCalendar'
+import EventList from '@/components/EventList'
+import EventCalendar from '@/components/EventCalendar'
 import UiAlert from '@/components/ui/UiAlert'
 import UiRadioGroup from '@/components/ui/UiRadioGroup'
 import UiSwitcher from '@/components/ui/UiSwitcher'
 import UiIcon from '@/components/ui/UiIcon'
 import UiInput from '@/components/ui/UiInput'
-import meetups from '@/api/meetups'
+import events from '@/api/events'
 
 const TESTING_TIMEOUT = 500
 
@@ -44,25 +44,25 @@ const switcherViewOptions = [
   {
     icon: 'list',
     value: 'list',
-    label: 'Meetup list',
+    label: 'Event list',
   }, {
     icon: 'calendar',
     value: 'calendar',
-    label: 'Meetup calendar',
+    label: 'Event calendar',
   }
 ]
 
 const viewComponents = {
-  list: MeetupsList,
-  calendar: MeetupsCalendar,
+  list: EventList,
+  calendar: EventCalendar,
 }
 
 export default {
-  name: 'MeetupsListView',
+  name: 'EventListView',
 
   components: {
-    // MeetupsList,
-    // MeetupsCalendar,
+    // EventList,
+    // EventCalendar,
     UiInput,
     UiRadioGroup,
     UiSwitcher,
@@ -76,7 +76,7 @@ export default {
 
   data() {
     return {
-      meetups: null,
+      events: null,
 
       filter: {
         date: 'all',
@@ -92,42 +92,43 @@ export default {
     currentViewComponent() {
       return viewComponents[this.view]
     },
-    filteredMeetups() {
-      const dateFilter = (meetup) =>
+    filteredEvents() {
+      const dateFilter = (event) =>
         this.filter.date === 'all' ||
-        (this.filter.date === 'past' && new Date(meetup.date) <= new Date()) ||
-        (this.filter.date === 'future' && new Date(meetup.date) > new Date());
+        (this.filter.date === 'past' && new Date(event.date) <= new Date()) ||
+        (this.filter.date === 'future' && new Date(event.date) > new Date());
 
-      const participationFilter = (meetup) =>
+      const participationFilter = (event) =>
         this.filter.participation === 'all' ||
-        (this.filter.participation === 'organizing' && meetup.organizing) ||
-        (this.filter.participation === 'attending' && meetup.attending);
+        (this.filter.participation === 'organizing' && event.organizing) ||
+        (this.filter.participation === 'attending' && event.attending);
 
-      const searchFilter = (meetup) =>
-        [meetup.title, meetup.description, meetup.place, meetup.organizer]
+      const searchFilter = (event) =>
+        [event.title, event.description, event.place, event.organizer]
           .join(' ')
           .toLowerCase()
           .includes(this.filter.search.toLowerCase());
 
-      return this.meetups.filter((meetup) => dateFilter(meetup) && participationFilter(meetup) && searchFilter(meetup));
+      return this.events.filter((event) => dateFilter(event) && participationFilter(event) && searchFilter(event));
     },
   },
 
   mounted() {
-    fetchMeetups().then((meetups) => {
-      this.meetups = meetups
+    fetchEvents().then((events) => {
+      this.events = events
     });
   },
 }
 
 /**
- * Получение списка митапов с API
- * @return {Promise<Object>} - Список митапов
- * @throws {Error} - Ошибка получения списка митапов
+ * Получение списка событий с API
+ * @return {Promise<Object>} - Список событий
+ * @throws {Error} - Ошибка получения списка событий
  */
-function fetchMeetups() {
+
+function fetchEvents() {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(meetups), TESTING_TIMEOUT)
+    setTimeout(() => resolve(events), TESTING_TIMEOUT)
   })
 }
 </script>

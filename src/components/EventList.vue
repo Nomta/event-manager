@@ -1,25 +1,25 @@
 <template>
-  <ul class="meetups-list">
-    <li v-for="meetup in meetups" :key="meetup.id" class="meetups-list__item">
-      <a :href="`/meetups/${meetup.id}`" class="meetups-list__item-link" tabindex="0">
-        <MeetupCard :meetup="meetup" />
+  <ul class="event-list">
+    <li v-for="event in events" :key="event.id" class="event-list__item">
+      <a :href="`/events/${event.id}`" class="event-list__item-link" tabindex="0">
+        <EventCard :event="event" />
       </a>
     </li>
   </ul>
 </template>
 
 <script>
-import MeetupCard from '@/components/MeetupCard'
+import EventCard from '@/components/EventCard'
 
 export default {
-  name: 'MeetupsList',
+  name: 'EventList',
 
   components: {
-    MeetupCard,
+    EventCard,
   },
 
   props: {
-    meetups: {
+    events: {
       type: Array,
       required: true,
     },
@@ -28,37 +28,37 @@ export default {
 </script>
 
 <style scoped>
-.meetups-list {
+.event-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.meetups-list__item {
+.event-list__item {
   margin: 0 0 32px 0;
 }
 
-.meetups-list {
+.event-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.meetups-list__item {
+.event-list__item {
   margin: 0 0 32px 0;
   text-decoration: none;
 }
 
-.meetups-list__item-link {
+.event-list__item-link {
   text-decoration: none;
   color: inherit;
 }
 
-.meetup-card {
+.event-card {
   position: relative;
 }
 
-.meetup-card__badge {
+.event-card__badge {
   position: absolute;
   top: 0;
   right: 0;

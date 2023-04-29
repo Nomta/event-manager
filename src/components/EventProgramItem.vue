@@ -1,17 +1,17 @@
 <template>
-  <div class="agenda-item">
-    <div class="agenda-item__col">
+  <div class="program-item">
+    <div class="program-item__col">
       <UiIcon v-if="iconName" :name="iconName" />
     </div>
-    <div class="agenda-item__col">{{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}</div>
-    <div class="agenda-item__col">
-      <h3 class="agenda-item__title">{{ title }}</h3>
-      <p v-if="agendaItem.type === 'talk'" class="agenda-item__talk">
-        <span>{{ agendaItem.speaker }}</span>
-        <span class="agenda-item__dot"></span>
-        <span class="agenda-item__lang">{{ agendaItem.language }}</span>
+    <div class="program-item__col">{{ programItem.startsAt }} - {{ programItem.endsAt }}</div>
+    <div class="program-item__col">
+      <h3 class="program-item__title">{{ title }}</h3>
+      <p v-if="programItem.type === 'talk'" class="program-item__talk">
+        <span>{{ programItem.speaker }}</span>
+        <span class="program-item__dot"></span>
+        <span class="program-item__lang">{{ programItem.language }}</span>
       </p>
-      <p v-if="agendaItem.description">Description</p>
+      <p v-if="programItem.description">Description</p>
     </div>
   </div>
 </template>
@@ -21,35 +21,35 @@ import { AGENDA_TYPES } from '@/services/app.config'
 import UiIcon from '@/components/ui/UiIcon'
 
 export default {
-  name: 'MeetupAgendaItem',
+  name: 'EventProgramItem',
 
   components: {
     UiIcon,
   },
 
   props: {
-    agendaItem: {
+    programItem: {
       type: Object,
       required: true,
     },
   },
 
   computed: {
-    agendaType() {
-      return AGENDA_TYPES[this.agendaItem.type]
+    programType() {
+      return AGENDA_TYPES[this.programItem.type]
     },
     title() {
-      return this.agendaItem.title ?? this.agendaType?.title
+      return this.programItem.title ?? this.programType?.title
     },
     iconName() {
-      return this.agendaType?.icon
+      return this.programType?.icon
     }
   },
 }
 </script>
 
 <style scoped>
-.agenda-item {
+.program-item {
   padding: 24px 0;
   display: flex;
   flex-direction: row;
@@ -57,47 +57,47 @@ export default {
   line-height: 28px;
 }
 
-.agenda-item__col:nth-child(1) {
+.program-item__col:nth-child(1) {
   flex: 1 0 48px;
   max-width: 48px;
 }
 
-.agenda-item__col:nth-child(2) {
+.program-item__col:nth-child(2) {
   flex: 115px;
   max-width: 115px;
   color: var(--main-color);
   white-space: nowrap;
 }
 
-.agenda-item__col:nth-child(3) {
+.program-item__col:nth-child(3) {
   flex: 1 0 calc(100% - 48 - 115);
   max-width: calc(100% - 48 - 115);
   padding-left: 24px;
 }
 
-.agenda-item__title {
+.program-item__title {
   font-weight: 700;
   font-size: 18px;
   line-height: 28px;
 }
 
-.agenda-item__lang {
+.program-item__lang {
   font-style: italic;
 }
 
-.agenda-item__dot::before {
+.program-item__dot::before {
   content: '•';
   color: var(--grey);
   padding: 0 1ch;
 }
 
-.agenda-item__talk {
+.program-item__talk {
   margin-top: 16px;
   margin-bottom: 0;
 }
 
 @media all and (min-width: 992px) {
-  .agenda-item {
+  .program-item {
     padding: 40px 0;
   }
 }

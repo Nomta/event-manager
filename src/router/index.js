@@ -8,10 +8,10 @@ const routes = [
       import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
   },
   {
-    path: '/meetups',
-    name: 'meetups',
+    path: '/events',
+    name: 'events',
     component: () =>
-      import(/* webpackChunkName: "meetups" */ '@/views/MeetupView.vue'),
+      import(/* webpackChunkName: "events" */ '@/views/EventView.vue'),
   },
 ]
 

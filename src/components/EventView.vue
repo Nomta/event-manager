@@ -1,17 +1,17 @@
 <template>
   <div>
-    <MeetupCover :title="meetup.title" :image="meetup.image" />
+    <EventCover :title="event.title" :image="event.image" />
     <UiContainer>
-      <div class="meetup">
-        <div class="meetup__content">
+      <div class="event">
+        <div class="event__content">
           <h3>Описание</h3>
-          <MeetupDescription :description="meetup.description" />
+          <EventDescription :description="event.description" />
           <h3>Программа</h3>
-          <MeetupAgenda v-if="meetup.agenda" :agenda="meetup.agenda" />
+          <EventProgram v-if="event.program" :program="event.program" />
           <UiAlert v-else>Программа пока пуста...</UiAlert>
         </div>
-        <div class="meetup__aside">
-          <MeetupInfo :organizer="meetup.organizer" :place="meetup.place" :date="meetup.date" />
+        <div class="event__aside">
+          <EventInfo :organizer="event.organizer" :place="event.place" :date="event.date" />
         </div>
       </div>
     </UiContainer>
@@ -21,25 +21,25 @@
 <script>
 import UiAlert from '@/components/ui/UiAlert'
 import UiContainer from '@/components/ui/UiContainer'
-import MeetupDescription from '@/components/MeetupDescription'
-import MeetupCover from '@/components/MeetupCover'
-import MeetupInfo from '@/components/MeetupInfo'
-import MeetupAgenda from '@/components/MeetupAgenda'
+import EventDescription from '@/components/EventDescription'
+import EventCover from '@/components/EventCover'
+import EventInfo from '@/components/EventInfo'
+import EventProgram from '@/components/EventProgram'
 
 export default {
-  name: 'MeetupView',
+  name: 'EventView',
 
   components: {
     UiAlert,
     UiContainer,
-    MeetupDescription,
-    MeetupCover,
-    MeetupInfo,
-    MeetupAgenda,
+    EventDescription,
+    EventCover,
+    EventInfo,
+    EventProgram,
   },
 
   props: {
-    meetup: {
+    event: {
       type: Object,
       required: true,
     },
@@ -48,26 +48,26 @@ export default {
 </script>
 
 <style scoped>
-.meetup {
+.event {
   display: flex;
   flex-direction: column;
   margin: 48px 0 0;
 }
 
-.meetup__aside {
+.event__aside {
   margin: 40px 0;
 }
 
 @media all and (min-width: 992px) {
-  .meetup {
+  .event {
     flex-direction: row;
   }
 
-  .meetup__content {
+  .event__content {
     flex: 1 0 calc(100% - 350px);
   }
 
-  .meetup__aside {
+  .event__aside {
     flex: 1 0 350px;
     padding: 50px 0 0 44px;
     margin: 0;

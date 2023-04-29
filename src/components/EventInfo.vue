@@ -1,15 +1,15 @@
 <template>
-  <ul class="meetup-info">
-    <li class="meetup-info__item">
-      <img class="icon meetup-info__icon" alt="icon" src="@/assets/icons/icon-user.svg" />
+  <ul class="event-info">
+    <li class="event-info__item">
+      <img class="icon event-info__icon" alt="icon" src="@/assets/icons/icon-user.svg" />
       {{ organizer }}
     </li>
-    <li class="meetup-info__item">
-      <img class="icon meetup-info__icon" alt="icon" src="@/assets/icons/icon-map.svg" />
+    <li class="event-info__item">
+      <img class="icon event-info__icon" alt="icon" src="@/assets/icons/icon-map.svg" />
       {{ place }}
     </li>
-    <li class="meetup-info__item">
-      <img class="icon meetup-info__icon" alt="icon" src="@/assets/icons/icon-calendar.svg" />
+    <li class="event-info__item">
+      <img class="icon event-info__icon" alt="icon" src="@/assets/icons/icon-calendar.svg" />
       <time datetime="2020-01-01">{{ localeDate }}</time>
     </li>
   </ul>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'MeetupInfo',
+  name: 'EventInfo',
 
   props: {
     organizer: {
@@ -43,12 +43,12 @@ export default {
 </script>
 
 <style scoped>
-.meetup-info {
+.event-info {
   margin: 0;
   padding: 0;
 }
 
-.meetup-info__item {
+.event-info__item {
   list-style-type: none;
   position: relative;
   padding-left: 36px;
@@ -57,11 +57,11 @@ export default {
   margin: 0 0 8px;
 }
 
-.meetup-info__item:last-child {
+.event-info__item:last-child {
   margin: 0;
 }
 
-.meetup-info__icon {
+.event-info__icon {
   position: absolute;
   left: 0;
   top: 0;

@@ -1,6 +1,6 @@
 <template>
-  <div class="page-meetup">
-    <MeetupViewComponent v-if="meetup" :meetup="meetup" />
+  <div class="page-event">
+    <EventViewComponent v-if="event" :event="event" />
     <UiContainer v-else-if="loading">
       <UiAlert>Загрузка...</UiAlert>
     </UiContainer>
@@ -13,20 +13,20 @@
 <script>
 import UiContainer from '@/components/ui/UiContainer'
 import UiAlert from '@/components/ui/UiAlert'
-import MeetupViewComponent from '@/components/MeetupView'
-import meetups from '@/api/meetups'
+import EventViewComponent from '@/components/EventView'
+import events from '@/api/events'
 
 const TESTING_TIMEOUT = 500
 
 export default {
-  name: 'MeetupView',
+  name: 'EventView',
 
   components: {
-    MeetupViewComponent,
+    EventViewComponent,
   },
 
   props: {
-    meetupId: {
+    eventId: {
       type: Number,
       default: 1
     },
@@ -34,45 +34,45 @@ export default {
 
   data() {
     return {
-      meetup: null,
+      event: null,
       error: null,
       loading: false,
     }
   },
 
   mounted() {
-    this.meetup = null
+    this.event = null
     this.error = null
     this.loading = true
 
-    fetchMeetupById(this.meetupId)
-      .then((meetup) => this.meetup = meetup)
+    fetchEventById(this.eventId)
+      .then((event) => this.event = event)
       .catch((error) => this.error = error)
       .finally(() => this.loading = false)
   }
 }
 
 /**
- * Получение данных митапа по Meetup ID с API
- * @param {Number} meetupId
- * @return {Promise<Object>} - Данные митапа
- * @throws {Error} - Ошибка получения данных митапа
+ * Получение данных события по Event ID с API
+ * @param {Number} eventId
+ * @return {Promise<Object>} - Данные события
+ * @throws {Error} - Ошибка получения данных события
  */
-function fetchMeetupById(meetupId) {
+function fetchEventById(eventId) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const meetup = meetups.find((meetup) => meetup.id === meetupId)
-      if (!meetup) {
+      const event = events.find((event) => event.id === eventId)
+      if (!event) {
         reject(new Error('Not found'))
       }
-      resolve(meetup)
+      resolve(event)
     }, TESTING_TIMEOUT)
   })
 }
 </script>
 
 <style scoped>
-.page-meetup {
+.page-event {
   background-color: var(--white);
 }
 </style>

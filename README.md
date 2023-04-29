@@ -1,4 +1,4 @@
-# meetups
+# event-manager
 
 ## Project setup
 ```

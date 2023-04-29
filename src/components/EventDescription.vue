@@ -1,10 +1,10 @@
 <template>
-  <p class="meetup-description">{{ description }}</p>
+  <p class="event-description">{{ description }}</p>
 </template>
 
 <script>
 export default {
-  name: 'MeetupDescription',
+  name: 'EventDescription',
 
   props: {
     description: String,
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style scoped>
-.meetup-description {
+.event-description {
   padding-top: 33px;
   margin-bottom: 24px;
   font-size: 18px;
