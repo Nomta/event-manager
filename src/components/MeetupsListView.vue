@@ -6,13 +6,7 @@
       </div>
       <div class="filters-panel__col">
         <div class="form-group form-group_inline">
-          <div class="input-group input-group_icon input-group_icon-left">
-            <div class="input-group__icon">
-              <UiIcon name="search" alt="search" />
-            </div>
-            <input class="form-control form-control_rounded form-control_sm" placeholder="Поиск" type="search"
-              v-model.trim="filter.search" />
-          </div>
+          <UiInput v-model="filter.search" class="form-control_sm" left-icon="search" placeholder="Поиск" type="search" />
         </div>
         <div class="form-group form-group_inline">
           <UiSwitcher v-model="view" :options="$options.switcherViewOptions" type="primary" />
@@ -35,6 +29,7 @@ import UiAlert from '@/components/ui/UiAlert'
 import UiRadioGroup from '@/components/ui/UiRadioGroup'
 import UiSwitcher from '@/components/ui/UiSwitcher'
 import UiIcon from '@/components/ui/UiIcon'
+import UiInput from '@/components/ui/UiInput'
 import meetups from '@/api/meetups'
 
 const TESTING_TIMEOUT = 500
@@ -68,6 +63,7 @@ export default {
   components: {
     // MeetupsList,
     // MeetupsCalendar,
+    UiInput,
     UiRadioGroup,
     UiSwitcher,
     UiContainer,
