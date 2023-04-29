@@ -63,8 +63,6 @@ export default {
 <style scoped>
 .switcher {
   display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   white-space: nowrap;
 }
 </style>
