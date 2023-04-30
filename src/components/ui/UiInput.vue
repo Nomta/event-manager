@@ -1,24 +1,21 @@
 <template>
   <div class="input-group" :class="iconClass">
-    <div v-if="leftIcon" class="input-group__icon">
-      <UiIcon :name="leftIcon" />
-    </div>
-    <textarea v-if="multiline" ref="input" class="form-control form-control_rounded" v-model.trim="value"
+    <textarea v-if="multiline" ref="input" class="form-control form-control_rounded textarea" v-model.trim="value"
       v-bind="$attrs"></textarea>
-    <input v-else ref="input" class="form-control form-control_rounded" v-model.trim="value" v-bind="$attrs" />
-    <div v-if="!leftIcon && rightIcon" class="input-group__icon">
-      <UiIcon :name="rightIcon" />
-    </div>
+    <template v-else>
+      <div v-if="leftIcon" class="input-group__icon">
+        <UiIcon :name="leftIcon" />
+      </div>
+      <input ref="input" class="form-control form-control_rounded" v-model.trim="value" v-bind="$attrs" />
+      <div v-if="!leftIcon && rightIcon" class="input-group__icon">
+        <UiIcon :name="rightIcon" />
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import UiIcon from '@/components/ui/UiIcon'
-
-// const viewComponents = {
-//   list: MeetupsList,
-//   calendar: MeetupsCalendar,
-// }
 
 export default {
   name: 'UiInput',
@@ -39,12 +36,6 @@ export default {
 
   inheritAttrs: false,
 
-  data() {
-    return {
-      view: 'list',
-    }
-  },
-
   computed: {
     value: {
       get() {
@@ -55,11 +46,11 @@ export default {
       }
     },
     iconClass() {
-      if (this.leftIcon) {
+      if (this.leftIcon && !this.multiline) {
         return 'input-group_icon input-group_icon-left'
       }
 
-      if (this.rightIcon) {
+      if (this.rightIcon && !this.multiline) {
         return 'input-group_icon input-group_icon-right'
       }
     }
@@ -76,7 +67,6 @@ export default {
 <style scoped>
 .input-group {
   --height: 2.6em;
-  --textarea-height: 2.6em;
   --padding-x: 0.6em;
   --padding-y: 0.8em;
   --padding-icon: 2.5em;
@@ -110,23 +100,20 @@ export default {
   border-color: var(--blue);
 }
 
-textarea.form-control {
+.form-control.textarea {
   width: 100%;
-  min-height: var(--textarea-height);
-}
-
-.form-control.form-control_rounded {
-  --border-radius: 1.3em;
-}
-
-.form-control.form-control_sm.form-control_rounded {
-  --border-radius: 1.1em;
+  height: auto;
+  min-height: 6em;
 }
 
 .form-control.form-control_sm {
   --height: 2.2em;
   --padding-x: 0.4em;
   --border-radius: 4px;
+}
+
+.form-control.form-control_rounded {
+  --border-radius: calc(var(--height) / 2);
 }
 
 .input-group .form-control {
