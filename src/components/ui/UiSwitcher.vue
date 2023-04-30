@@ -1,7 +1,7 @@
 <template>
   <div class="switcher" role="group">
     <UiButton v-for="{ value, text, label, icon } in viewOptions" :key="value" :inverted="modelValue === value"
-      :aria-label="label" :type="type" @click="select(value)">
+      :aria-label="label" :type="type" :rounded="rounded" @click="select(value)">
       <InlineSvg v-if="icon" :src="icon" />
       <span v-if="text">{{ text }}</span>
     </UiButton>
@@ -29,7 +29,8 @@ export default {
       type: Array,
       required: true
     },
-    type: String
+    type: String,
+    rounded: Boolean,
   },
 
   emits: ['update:modelValue'],

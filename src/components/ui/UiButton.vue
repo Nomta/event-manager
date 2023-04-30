@@ -1,6 +1,6 @@
 <template>
-  <button type="button" class="button" :class="[buttonClass, isInverted]" :style="style" :aria-label="label"
-    @click="handleClick">
+  <button type="button" class="button" :class="[buttonType, ...buttonClasses, isInverted]" :style="style"
+    :aria-label="label" @click="handleClick">
     <slot>
       <span>{{ text }}</span>
     </slot>
@@ -13,16 +13,19 @@ const BUTTON_TYPES = {
   success: 'button_success',
 }
 
+const BUTTON_CLASSES = {
+  rounded: 'button_rounded',
+}
+
 export default {
   name: 'UiButton',
 
   props: {
-    inverted: {
-      type: Boolean,
-      default: false
-    },
     text: String,
     ariaLabel: String,
+
+    inverted: Boolean,
+    rounded: Boolean,
 
     type: {
       type: String,
@@ -33,8 +36,19 @@ export default {
   emits: ['click'],
 
   computed: {
-    buttonClass() {
-      return BUTTON_TYPES[this.type];
+    buttonType() {
+      return BUTTON_TYPES[this.type]
+    },
+    buttonClasses() {
+      const classes = []
+
+      for (const key of Object.keys(BUTTON_CLASSES)) {
+        if (this[key]) {
+          classes.push(BUTTON_CLASSES[key])
+        }
+      }
+
+      return classes
     },
     isInverted() {
       if (this.inverted) {
@@ -54,6 +68,8 @@ export default {
 }
 </script>
 
+
+
 <style scoped>
 .button {
   --base-color: currentColor;
@@ -61,7 +77,7 @@ export default {
   --height: 2.44em;
   --padding: 0.44em;
   --padding-2: 0.55em;
-  --rad: calc(var(--height) / 2);
+  --rad: var(--border-radius);
 
   height: var(--height);
   min-width: 2.7em;
@@ -78,6 +94,10 @@ export default {
   box-shadow: none;
   outline: none;
   cursor: pointer;
+}
+
+.button_rounded {
+  --rad: calc(var(--height) / 2);
 }
 
 .button_primary {

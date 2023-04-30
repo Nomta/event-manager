@@ -1,24 +1,31 @@
 <template>
-  <div class="input-group" :class="iconClass">
-    <div v-if="leftIcon" class="input-group__icon">
-      <UiIcon :name="leftIcon" />
-    </div>
-    <textarea v-if="multiline" ref="input" class="form-control form-control_rounded" v-model.trim="value"
+  <div class="input-group" :class="iconClasses">
+    <textarea v-if="multiline" ref="input" class="form-control textarea" :class="inputClasses" v-model.trim="value"
       v-bind="$attrs"></textarea>
-    <input v-else ref="input" class="form-control form-control_rounded" v-model.trim="value" v-bind="$attrs" />
-    <div v-if="!leftIcon && rightIcon" class="input-group__icon">
-      <UiIcon :name="rightIcon" />
-    </div>
+    <template v-else>
+      <div v-if="leftIcon" class="input-group__icon">
+        <UiIcon :name="leftIcon" />
+      </div>
+      <input ref="input" class="form-control" :class="inputClasses" v-model.trim="value" v-bind="$attrs" />
+      <div v-if="!leftIcon && rightIcon" class="input-group__icon">
+        <UiIcon :name="rightIcon" />
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import UiIcon from '@/components/ui/UiIcon'
 
-// const viewComponents = {
-//   list: MeetupsList,
-//   calendar: MeetupsCalendar,
-// }
+const ICON_CLASSES = {
+  left: 'input-group_icon input-group_icon-left',
+  right: 'input-group_icon input-group_icon-right'
+}
+
+const INPUT_CLASSES = {
+  rounded: 'form-control_rounded',
+  small: 'form-control_rounded'
+}
 
 export default {
   name: 'UiInput',
@@ -32,18 +39,14 @@ export default {
     rightIcon: String,
     modelValue: String,
     multiline: Boolean,
+    rounded: Boolean,
+    small: Boolean,
     focus: Boolean,
   },
 
   events: ['update:modelValue'],
 
   inheritAttrs: false,
-
-  data() {
-    return {
-      view: 'list',
-    }
-  },
 
   computed: {
     value: {
@@ -54,14 +57,27 @@ export default {
         this.$emit('update:modelValue', value)
       }
     },
-    iconClass() {
-      if (this.leftIcon) {
-        return 'input-group_icon input-group_icon-left'
+    iconClasses() {
+      if (!this.multiline) {
+        if (this.leftIcon) {
+          return ICON_CLASSES['left']
+        }
+
+        else if (this.rightIcon) {
+          return ICON_CLASSES['right']
+        }
+      }
+    },
+    inputClasses() {
+      const classes = []
+
+      for (const key of Object.keys(INPUT_CLASSES)) {
+        if (this[key]) {
+          classes.push(INPUT_CLASSES[key])
+        }
       }
 
-      if (this.rightIcon) {
-        return 'input-group_icon input-group_icon-right'
-      }
+      return classes
     }
   },
 
@@ -76,7 +92,6 @@ export default {
 <style scoped>
 .input-group {
   --height: 2.6em;
-  --textarea-height: 2.6em;
   --padding-x: 0.6em;
   --padding-y: 0.8em;
   --padding-icon: 2.5em;
@@ -110,23 +125,20 @@ export default {
   border-color: var(--blue);
 }
 
-textarea.form-control {
+.form-control.textarea {
   width: 100%;
-  min-height: var(--textarea-height);
-}
-
-.form-control.form-control_rounded {
-  --border-radius: 1.3em;
-}
-
-.form-control.form-control_sm.form-control_rounded {
-  --border-radius: 1.1em;
+  height: auto;
+  min-height: 6em;
 }
 
 .form-control.form-control_sm {
   --height: 2.2em;
   --padding-x: 0.4em;
   --border-radius: 4px;
+}
+
+.form-control.form-control_rounded {
+  --border-radius: calc(var(--height) / 2);
 }
 
 .input-group .form-control {
