@@ -1,5 +1,5 @@
 <template>
-  <div class="event-cover" :style="style">
+  <div class="event-cover">
     <h1 class="event-cover__title">{{ title }}</h1>
   </div>
 </template>
@@ -14,10 +14,8 @@ export default {
   },
 
   computed: {
-    style() {
-      if (this.image) {
-        return `--bg-url: url('${this.image}')`
-      }
+    backgroundImage() {
+      return this.image ? `url(${this.image})` : 'var(--default-cover)';
     }
   },
 }
@@ -26,13 +24,12 @@ export default {
 <style scoped>
 .event-cover {
   --default-cover: url('@/assets/images/undraw_speaker.svg');
-  --bg-url: var(--default-cover);
 
   background-size: cover;
   background-position: center;
   background-image:
     linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    var(--bg-url);
+    v-bind('backgroundImage');
   display: flex;
   flex-direction: column;
   align-items: center;
