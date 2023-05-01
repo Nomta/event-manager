@@ -82,10 +82,11 @@ export default {
   height: var(--height);
   min-width: 2.7em;
   border: 2px solid var(--base-color);
+  border-radius: var(--rad);
   padding: var(--padding);
   font-size: 1.125rem;
   background-color: var(--inverted-color);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--padding);
@@ -106,28 +107,6 @@ export default {
 
 .button_success {
   color: var(--green);
-}
-
-.button:first-of-type {
-  border-radius: var(--rad) 0 0 var(--rad);
-  padding-left: var(--padding-2);
-}
-
-.button:last-of-type {
-  border-radius: 0 var(--rad) var(--rad) 0;
-  padding-right: var(--padding-2);
-}
-
-.button:not(:first-of-type) {
-  border-left-width: 1px;
-}
-
-.button:not(:last-of-type) {
-  border-right-width: 1px;
-}
-
-.button:only-of-type {
-  border-radius: var(--rad);
 }
 
 .button :slotted(*) {
