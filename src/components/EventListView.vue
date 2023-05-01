@@ -5,12 +5,13 @@
         <UiRadioGroup v-model="filter.date" :options="$options.dateFilterOptions" />
       </div>
       <div class="filters-panel__col">
-        <div class="form-group form-group_inline">
-          <UiInput v-model="filter.search" class="form-control_sm" left-icon="search" placeholder="Поиск" type="search" />
-        </div>
-        <div class="form-group form-group_inline">
-          <UiSwitcher v-model="view" :options="$options.switcherViewOptions" type="primary" />
-        </div>
+        <UiFormGroup inline>
+          <UiInput v-model="filter.search" class="form-control_sm" left-icon="search" placeholder="Поиск" type="search"
+            rounded />
+        </UiFormGroup>
+        <UiFormGroup inline>
+          <UiSwitcher v-model="view" :options="$options.switcherViewOptions" type="primary" rounded />
+        </UiFormGroup>
       </div>
     </div>
     <template v-if="events">
@@ -28,6 +29,7 @@ import EventCalendar from '@/components/EventCalendar'
 import UiAlert from '@/components/ui/UiAlert'
 import UiRadioGroup from '@/components/ui/UiRadioGroup'
 import UiSwitcher from '@/components/ui/UiSwitcher'
+import UiFormGroup from '@/components/ui/UiFormGroup';
 import UiIcon from '@/components/ui/UiIcon'
 import UiInput from '@/components/ui/UiInput'
 import events from '@/api/events'
@@ -63,6 +65,7 @@ export default {
   components: {
     // EventList,
     // EventCalendar,
+    UiFormGroup,
     UiInput,
     UiRadioGroup,
     UiSwitcher,
