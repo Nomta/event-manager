@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import UiIcon from '@/components/ui/UiIcon'
-
 const ICON_CLASSES = {
   left: 'input-group_icon input-group_icon-left',
   right: 'input-group_icon input-group_icon-right'
@@ -29,10 +27,6 @@ const INPUT_CLASSES = {
 
 export default {
   name: 'UiInput',
-
-  components: {
-    UiIcon,
-  },
 
   props: {
     leftIcon: String,

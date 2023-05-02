@@ -10,14 +10,12 @@
 
 <script>
 import InlineSvg from 'vue-inline-svg'
-import UiButton from '@/components/ui/UiButton'
 import { PATH_TO_ICONS } from '@/services/app.config'
 
 export default {
   name: 'UiSwitcher',
 
   components: {
-    UiButton,
     InlineSvg,
   },
 

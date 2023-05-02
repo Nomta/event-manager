@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import UiIcon from '@/components/ui/UiIcon'
-
 const TOAST_TYPES = {
   success: {
     icon: 'check-circle',
@@ -32,8 +30,6 @@ const TOAST_TYPES = {
 
 export default {
   name: 'TheToast',
-
-  components: { UiIcon },
 
   props: {
     type: {

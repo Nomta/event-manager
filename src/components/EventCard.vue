@@ -23,18 +23,8 @@
 </template>
 
 <script>
-import UiBadge from '@/components/ui/UiBadge'
-import UiCard from '@/components/ui/UiCard'
-import UiIcon from '@/components/ui/UiIcon'
-
 export default {
   name: 'EventCard',
-
-  components: {
-    UiBadge,
-    UiCard,
-    UiIcon,
-  },
 
   props: {
     event: {
@@ -44,7 +34,7 @@ export default {
   },
   computed: {
     isoDate() {
-      return new Date(this.event.date).toISOString().split('T')[0];
+      return new Date(this.event.date).toISOString().split('T')[0]
     },
 
     localDate() {

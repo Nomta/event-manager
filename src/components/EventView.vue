@@ -19,8 +19,6 @@
 </template>
 
 <script>
-import UiAlert from '@/components/ui/UiAlert'
-import UiContainer from '@/components/ui/UiContainer'
 import EventDescription from '@/components/EventDescription'
 import EventCover from '@/components/EventCover'
 import EventInfo from '@/components/EventInfo'
@@ -30,8 +28,6 @@ export default {
   name: 'EventView',
 
   components: {
-    UiAlert,
-    UiContainer,
     EventDescription,
     EventCover,
     EventInfo,

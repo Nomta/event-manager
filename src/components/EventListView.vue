@@ -23,15 +23,8 @@
 </template>
 
 <script>
-import UiContainer from '@/components/ui/UiContainer'
 import EventList from '@/components/EventList'
 import EventCalendar from '@/components/EventCalendar'
-import UiAlert from '@/components/ui/UiAlert'
-import UiRadioGroup from '@/components/ui/UiRadioGroup'
-import UiSwitcher from '@/components/ui/UiSwitcher'
-import UiFormGroup from '@/components/ui/UiFormGroup';
-import UiIcon from '@/components/ui/UiIcon'
-import UiInput from '@/components/ui/UiInput'
 import events from '@/api/events'
 
 const TESTING_TIMEOUT = 500
@@ -61,18 +54,6 @@ const viewComponents = {
 
 export default {
   name: 'EventListView',
-
-  components: {
-    // EventList,
-    // EventCalendar,
-    UiFormGroup,
-    UiInput,
-    UiRadioGroup,
-    UiSwitcher,
-    UiContainer,
-    UiAlert,
-    UiIcon,
-  },
 
   dateFilterOptions,
   switcherViewOptions,

@@ -18,14 +18,9 @@
 
 <script>
 import { AGENDA_TYPES } from '@/services/app.config'
-import UiIcon from '@/components/ui/UiIcon'
 
 export default {
   name: 'EventProgramItem',
-
-  components: {
-    UiIcon,
-  },
 
   props: {
     programItem: {

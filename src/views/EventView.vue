@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import UiContainer from '@/components/ui/UiContainer'
-import UiAlert from '@/components/ui/UiAlert'
 import EventViewComponent from '@/components/EventView'
 import events from '@/api/events'
 
