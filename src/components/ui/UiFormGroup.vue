@@ -32,9 +32,9 @@ export default {
 
 .form-group__label {
   font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-  margin-bottom: 10px;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-bottom: 0.625rem;
   display: block;
 }
 </style>

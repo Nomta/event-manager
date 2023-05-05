@@ -1,7 +1,7 @@
 <template>
   <div class="switcher" role="group">
     <UiButton v-for="{ value, text, label, icon } in viewOptions" :key="value" class="switcher__button"
-      :inverted="modelValue === value" :aria-label="label" :type="type" :rounded="rounded" @click="select(value)">
+      :inverted="modelValue !== value" :aria-label="label" :type="type" :rounded="rounded" @click="select(value)">
       <InlineSvg v-if="icon" :src="icon" />
       <span v-if="text">{{ text }}</span>
     </UiButton>

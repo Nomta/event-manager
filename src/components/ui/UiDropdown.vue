@@ -1,17 +1,17 @@
 <template>
   <div class="dropdown" ref="dropdown" :class="{ 'dropdown_opened': opened }" @click="toggle">
-    <button type="button" class="dropdown__toggle" :class="{ 'dropdown__toggle_icon': optionsHaveIcons }">
+    <div type="button" class="dropdown__toggle" :class="{ 'dropdown__toggle_icon': optionsHaveIcons }">
       <UiIcon v-if="selectedOption?.icon" :name="selectedOption.icon" class="dropdown__icon" />
       <span>{{ dropdownTitle }}</span>
-    </button>
+    </div>
 
-    <div v-show="opened" class="dropdown__menu" role="listbox">
-      <button v-for="option in options" class="dropdown__item " :class="{ 'dropdown__item_icon': optionsHaveIcons }"
+    <ul v-show="opened" class="dropdown__menu" role="listbox">
+      <li v-for="option in options" class="dropdown__item " :class="{ 'dropdown__item_icon': optionsHaveIcons }"
         :key="option.value" role="option" type="button" @click.stop="select(option)">
         <UiIcon v-if="option.icon" :name="option.icon" class="dropdown__icon" />
         {{ option.text }}
-      </button>
-    </div>
+      </li>
+    </ul>
   </div>
 
   <select value="" @change="handleNativeSelect" style="display: none">
@@ -98,16 +98,14 @@ export default {
   display: inline-block;
   border: 2px solid var(--line-color);
   border-radius: var(--border-radius);
-  padding: 0.625rem 3.5rem 0.625rem 1.5rem;
+  padding: 0.5rem 3.5rem 0.5rem 1.5rem;
   font-weight: 500;
   font-size: 1.25rem;
-  line-height: 1.4;
+  line-height: 1.25;
   color: initial;
   text-align: center;
   background-color: var(--white);
   background-position: calc(100% - 0.5em) calc(100% - 0.5em);
-  transition-duration: 0.2s;
-  transition-property: background-color, fill, color;
   outline: none;
   box-shadow: none;
   cursor: pointer;
@@ -117,7 +115,7 @@ export default {
 .dropdown__toggle:after {
   content: '';
   position: absolute;
-  top: 0.875rem;
+  top: 0.75rem;
   right: 1rem;
   transform: none;
   background: url('@/assets/icons/icon-chevron-down.svg') no-repeat;
@@ -125,7 +123,7 @@ export default {
   display: block;
   width: 1.2em;
   height: 1.2em;
-  transition: 0.2s transform;
+  transition: var(--transition-duration) transform;
 }
 
 .dropdown__toggle.dropdown__toggle_icon {
@@ -164,7 +162,7 @@ export default {
   position: absolute;
   height: auto;
   transform: translate3d(0px, 52px, 0px);
-  top: -1px;
+  top: -0.5em;
   left: 0;
   will-change: transform;
   right: auto;
@@ -182,7 +180,7 @@ export default {
   border: none;
   cursor: pointer;
   text-align: left;
-  transition-duration: 0.2s;
+  transition-duration: var(--transition-duration);
   transition-property: background-color, border-color, color;
   outline: none;
   text-decoration: none;

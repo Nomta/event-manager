@@ -85,7 +85,7 @@ export default {
   border-radius: var(--rad);
   padding: var(--padding);
   font-size: 1.125rem;
-  background-color: var(--inverted-color);
+  background-color: var(--base-color);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,20 +112,27 @@ export default {
 .button :slotted(*) {
   transition-duration: var(--transition-duration);
   transition-property: color, fill;
-}
-
-.button :slotted(svg) {
-  fill: var(--base-color);
+  color: var(--inverted-color);
+  fill: var(--inverted-color);
 }
 
 
 .button:hover,
 .button_inverted {
-  background-color: var(--base-color);
+  background-color: var(--inverted-color);
 }
 
 .button:hover :slotted(*),
 .button_inverted :slotted(*) {
+  color: var(--base-color);
+  fill: var(--base-color);
+}
+
+.button_inverted:hover {
+  background-color: var(--base-color);
+}
+
+.button_inverted:hover :slotted(*) {
   color: var(--inverted-color);
   fill: var(--inverted-color);
 }

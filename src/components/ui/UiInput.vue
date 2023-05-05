@@ -98,9 +98,8 @@ export default {
   height: var(--height);
   padding: var(--padding-y) var(--padding-x);
   border-radius: var(--border-radius);
-  border: 2px solid var(--blue-light);
+  border: 2px solid var(--line-color);
   font-family: 'Nunito', sans-serif;
-  font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.4em;
   color: var(--body-color);
@@ -112,11 +111,11 @@ export default {
 
 .form-control::placeholder {
   font-weight: 400;
-  color: var(--blue-2);
+  color: var(--accent-color);
 }
 
 .form-control:focus {
-  border-color: var(--blue);
+  border-color: var(--main-color);
 }
 
 .form-control.textarea {
