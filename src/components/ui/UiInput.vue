@@ -17,12 +17,12 @@
 <script>
 const ICON_CLASSES = {
   left: 'input-group_icon input-group_icon-left',
-  right: 'input-group_icon input-group_icon-right'
+  right: 'input-group_icon input-group_icon-right',
 }
 
 const INPUT_CLASSES = {
   rounded: 'form-control_rounded',
-  small: 'form-control_rounded'
+  small: 'form-control_rounded',
 }
 
 export default {
