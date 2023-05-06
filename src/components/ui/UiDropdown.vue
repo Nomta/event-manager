@@ -1,13 +1,13 @@
 <template>
   <div class="dropdown" ref="dropdown" :class="{ 'dropdown_opened': opened }" @click="toggle">
-    <div type="button" class="dropdown__toggle" :class="{ 'dropdown__toggle_icon': optionsHaveIcons }">
+    <div class="dropdown__toggle" :class="{ 'dropdown__toggle_icon': optionsHaveIcons }">
       <UiIcon v-if="selectedOption?.icon" :name="selectedOption.icon" class="dropdown__icon" />
       <span class="dropdown__title">{{ dropdownTitle }}</span>
     </div>
 
     <ul class="dropdown__menu" role="listbox">
       <li v-for="option in options" class="dropdown__item" :class="{ 'dropdown__item_icon': optionsHaveIcons }"
-        :key="option.value" role="option" type="button" @click.stop="select(option)">
+        :key="option.value" role="option" @click.stop="select(option)">
         <UiIcon v-if="option.icon" :name="option.icon" class="dropdown__icon" />
         <span class="dropdown__item-text">{{ option.text }}</span>
       </li>
