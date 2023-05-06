@@ -2,14 +2,14 @@
   <div class="dropdown" ref="dropdown" :class="{ 'dropdown_opened': opened }" @click="toggle">
     <div type="button" class="dropdown__toggle" :class="{ 'dropdown__toggle_icon': optionsHaveIcons }">
       <UiIcon v-if="selectedOption?.icon" :name="selectedOption.icon" class="dropdown__icon" />
-      <span>{{ dropdownTitle }}</span>
+      <span class="dropdown__title">{{ dropdownTitle }}</span>
     </div>
 
-    <ul v-show="opened" class="dropdown__menu" role="listbox">
-      <li v-for="option in options" class="dropdown__item " :class="{ 'dropdown__item_icon': optionsHaveIcons }"
+    <ul class="dropdown__menu" role="listbox">
+      <li v-for="option in options" class="dropdown__item" :class="{ 'dropdown__item_icon': optionsHaveIcons }"
         :key="option.value" role="option" type="button" @click.stop="select(option)">
         <UiIcon v-if="option.icon" :name="option.icon" class="dropdown__icon" />
-        {{ option.text }}
+        <span class="dropdown__item-text">{{ option.text }}</span>
       </li>
     </ul>
   </div>
@@ -41,6 +41,7 @@ export default {
 
   data() {
     return {
+      titleWidth: 'auto',
       opened: false
     }
   },
@@ -66,10 +67,19 @@ export default {
       this.opened = false
     },
     closeOut(e) {
-      // this.$el не указывает на узел компонента 
       if (!this.$refs.dropdown.contains(e.target)) {
         this.opened = false
       }
+    },
+    updateWidth() {
+      const options = this.$refs.dropdown.querySelectorAll('.dropdown__item-text')
+      const title = this.$refs.dropdown.querySelector('.dropdown__title')
+
+      const maxWidth = Array.from(options).reduce((max, option) => {
+        return Math.max(max, option.clientWidth)
+      }, title.clientWidth)
+
+      this.titleWidth = `${maxWidth}px`
     },
     handleNativeSelect(e) {
       this.select(this.options.find(option => option.value === e.target.value))
@@ -77,6 +87,7 @@ export default {
   },
 
   mounted() {
+    this.updateWidth()
     document.addEventListener('click', this.closeOut)
   },
 
@@ -140,33 +151,33 @@ export default {
   transform: rotate(180deg);
 }
 
+.dropdown__title {
+  display: inline-block;
+  width: v-bind(titleWidth);
+}
+
 .dropdown__menu {
-  margin: 0;
+  position: absolute;
   width: 100%;
   height: 0;
+  margin: 0;
+  margin-top: -1px;
   padding: 0;
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
   left: 0;
   z-index: 95;
   background-clip: padding-box;
-  display: none;
+  display: flex;
   flex-direction: column;
-  border: 2px solid var(--line-color);
-  border-top: none;
   overflow: hidden;
 }
 
 .dropdown_opened .dropdown__menu {
-  display: flex;
-  position: absolute;
   height: auto;
-  transform: translate3d(0px, 52px, 0px);
-  top: -0.5em;
-  left: 0;
+  border: 2px solid var(--line-color);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-top: none;
   will-change: transform;
-  right: auto;
-  bottom: auto;
 }
 
 .dropdown__item {
@@ -202,5 +213,9 @@ export default {
   top: 50%;
   left: 1rem;
   transform: translate(0, -50%);
+}
+
+.dropdown__item-text {
+  display: inline-block;
 }
 </style>
