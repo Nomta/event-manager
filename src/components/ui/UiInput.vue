@@ -102,7 +102,7 @@ export default {
   font-family: 'Nunito', sans-serif;
   font-size: 1.25rem;
   line-height: 1.4em;
-  color: var(--body-color);
+  color: var(--default-color);
   transition: var(--transition-duration) border-color;
   background-color: var(--white);
   outline: none;

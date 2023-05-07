@@ -120,9 +120,9 @@ function fetchEvents() {
 <style scoped>
 .filters-panel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  margin: 40px 0 32px 0;
+  margin: 2.5rem 0 2rem 0;
 }
 
 .filters-panel__col {
@@ -131,63 +131,17 @@ function fetchEvents() {
   align-items: flex-start;
 }
 
-.form-group {
-  position: relative;
-  margin-bottom: 24px;
+.filters-panel__col:not(:first-of-type) {
+  margin-top: 1rem;
 }
 
-.form-group.form-group_inline {
-  display: inline-block;
-  margin-bottom: 0;
-}
-
-.form-group.form-group_inline+.form-group.form-group_inline {
-  margin-left: 16px;
-}
-
-.form-group__label {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-  color: var(--body-color);
-  margin-bottom: 10px;
-  display: block;
-}
-
-
-.input-group {
-  position: relative;
-}
-
-.input-group .form-control {
-  width: 100%;
-}
-
-.input-group.input-group_icon .form-control {
-  padding-left: 50px;
-}
-
-.input-group.input-group_icon .input-group__icon {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
-.input-group.input-group_icon.input-group_icon-left .input-group__icon {
-  left: 16px;
-}
-
-.input-group.input-group_icon.input-group_icon-right .input-group__icon {
-  right: 16px;
-}
-
-@media all and (max-width: 767px) {
+@media all and (min-width: 768px) {
   .filters-panel {
-    flex-direction: column;
+    flex-direction: row;
   }
 
-  .filters-panel__col+.filters-panel__col {
-    margin-top: 16px;
+  .filters-panel__col:not(:first-of-type) {
+    margin-top: 0;
   }
 }
 </style>
