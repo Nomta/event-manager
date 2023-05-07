@@ -1,21 +1,17 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/events">Events</router-link>
-  </nav>
-  <router-view />
+  <MainLayout>
+    <RouterView />
+  </MainLayout>
 </template>
 
-<style>
-nav {
-  padding: 30px;
-}
+<script>
+import MainLayout from './components/layout/MainLayout'
 
-nav a {
-  font-weight: bold;
-}
+export default {
+  name: 'App',
 
-nav a.router-link-exact-active {
-  color: var(--accent-color);
+  components: {
+    MainLayout,
+  },
 }
-</style>
+</script>

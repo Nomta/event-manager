@@ -1,0 +1,28 @@
+<template>
+  <h1 class="logo">
+    <RouterLink to="/">
+      <img src="@/assets/images/logo.svg" alt="Logo" class="logo__image" width="174" height="30" />
+    </RouterLink>
+  </h1>
+</template>
+
+<script>
+export default {
+  name: 'PageLogo',
+};
+</script>
+
+<style scoped>
+.logo,
+.logo__link {
+  display: block;
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 30px;
+  text-align: center;
+  margin: 0 0 24px;
+  text-transform: uppercase;
+  color: var(--body-color);
+  text-decoration: none;
+}
+</style>
