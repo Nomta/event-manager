@@ -1,9 +1,10 @@
 <template>
   <button type="button" class="button" :class="[buttonType, ...buttonClasses, isInverted]" :style="style"
-    :aria-label="label" @click="handleClick">
-    <slot>
-      <span>{{ text }}</span>
-    </slot>
+    :aria-label="ariaLabel ?? label" v-bind="$attrs" @click="handleClick">
+    <span v-if="containsPlainText">
+      <slot />
+    </span>
+    <slot v-else />
   </button>
 </template>
 
@@ -21,7 +22,7 @@ export default {
   name: 'UiButton',
 
   props: {
-    text: String,
+    label: String,
     ariaLabel: String,
 
     inverted: Boolean,
@@ -55,8 +56,12 @@ export default {
         return 'button_inverted'
       }
     },
-    label() {
-      return this.ariaLabel ?? this.text
+    containsPlainText() {
+      const slotDefault = this.$slots.default
+
+      if (slotDefault) {
+        return slotDefault().some((child) => String(child.type) === 'Symbol(Text)')
+      }
     },
   },
 
@@ -109,6 +114,7 @@ export default {
   color: var(--green);
 }
 
+.button *,
 .button :slotted(*) {
   transition-duration: var(--transition-duration);
   transition-property: color, fill;
@@ -122,6 +128,8 @@ export default {
   background-color: var(--inverted-color);
 }
 
+.button:hover *,
+.button_inverted *,
 .button:hover :slotted(*),
 .button_inverted :slotted(*) {
   color: var(--base-color);
@@ -132,6 +140,7 @@ export default {
   background-color: var(--base-color);
 }
 
+.button_inverted:hover *,
 .button_inverted:hover :slotted(*) {
   color: var(--inverted-color);
   fill: var(--inverted-color);
