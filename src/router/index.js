@@ -3,9 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'index',
     component: () =>
-      import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
+      import(/* webpackChunkName: "index" */ '@/views/HomeView.vue'),
   },
   {
     path: '/events',

@@ -1,7 +1,9 @@
 <template>
   <nav class="nav">
-    <RouterLink to="/" class="nav__link">Home</RouterLink>
-    <RouterLink to="/events" class="nav__link">Events</RouterLink>
+    <RouterLink :to="{ name: 'index' }" class="nav__link">Home</RouterLink>
+    <RouterLink :to="{ name: 'events' }" class="nav__link">Events</RouterLink>
+    <RouterLink :to="{ name: 'login' }" class="nav__link">Login</RouterLink>
+    <RouterLink :to="{ name: 'register' }" class="nav__link">Register</RouterLink>
   </nav>
 </template>
 
