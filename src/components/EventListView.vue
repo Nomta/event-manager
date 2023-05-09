@@ -18,7 +18,7 @@
       <component v-if="filteredEvents.length" :is="currentViewComponent" :events="filteredEvents" />
       <UiAlert v-else>Событий не найдено</UiAlert>
     </template>
-    <UiAlert v-else text="Загрузка..." />
+    <UiAlert v-else>Загрузка...</UiAlert>
   </UiContainer>
 </template>
 

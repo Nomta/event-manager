@@ -1,7 +1,7 @@
 <template>
   <h1 class="logo">
     <RouterLink to="/">
-      <img src="@/assets/images/logo.svg" alt="Logo" class="logo__image" width="174" height="30" />
+      <img src="@/assets/images/logo.svg" alt="Logo" width="174" height="30" />
     </RouterLink>
   </h1>
 </template>
@@ -13,8 +13,7 @@ export default {
 </script>
 
 <style scoped>
-.logo,
-.logo__link {
+.logo {
   display: block;
   font-weight: 900;
   font-size: 34px;
