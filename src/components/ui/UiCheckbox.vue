@@ -34,7 +34,6 @@ export default {
   display: inline-block;
   position: relative;
   padding-left: 2.75rem;
-  margin-bottom: 0.625rem;
   text-align: left;
   cursor: pointer;
   font-size: 1.25rem;
