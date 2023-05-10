@@ -14,6 +14,16 @@ const routes = [
       import(/* webpackChunkName: "events" */ '@/views/EventView.vue'),
   },
   {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/LoginView'),
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "register" */ '@/views/RegisterView'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     component: () => import(/* webpackChunkName: "notFound" */ '@/views/NotFoundView'),
   },
