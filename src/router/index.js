@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import MainLayout from '@/layouts/MainLayout'
+import AuthLayout from '@/layouts/AuthLayout'
 
 const routes = [
   {
@@ -6,22 +8,26 @@ const routes = [
     name: 'index',
     component: () =>
       import(/* webpackChunkName: "index" */ '@/views/HomeView.vue'),
+    meta: { layout: MainLayout },
   },
   {
     path: '/events',
     name: 'events',
     component: () =>
       import(/* webpackChunkName: "events" */ '@/views/EventView.vue'),
+    meta: { layout: MainLayout },
   },
   {
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/LoginView'),
+    meta: { layout: AuthLayout },
   },
   {
     path: '/register',
     name: 'register',
     component: () => import(/* webpackChunkName: "register" */ '@/views/RegisterView'),
+    meta: { layout: AuthLayout },
   },
   {
     path: '/:pathMatch(.*)*',

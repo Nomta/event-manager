@@ -1,17 +1,17 @@
 <template>
-  <MainLayout>
+  <PageLayout>
     <RouterView />
-  </MainLayout>
+  </PageLayout>
 </template>
 
 <script>
-import MainLayout from './components/layout/MainLayout'
+import PageLayout from '@/layouts/PageLayout'
 
 export default {
   name: 'App',
 
   components: {
-    MainLayout,
+    PageLayout,
   },
 }
 </script>

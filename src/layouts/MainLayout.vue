@@ -1,7 +1,7 @@
 <template>
-  <div class="wrapper">
+  <div class="main-page">
     <PageHeader />
-    <main class="main">
+    <main class="main-page__content">
       <slot />
     </main>
     <PageFooter />
@@ -23,14 +23,14 @@ export default {
 </script>
 
 <style>
-.wrapper {
+.main-page {
   background-color: var(--grey-light);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.main {
+.main-page__content {
   flex: 1 0 auto;
 }
 </style>
