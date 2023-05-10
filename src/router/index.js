@@ -13,6 +13,10 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "events" */ '@/views/EventView.vue'),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import(/* webpackChunkName: "notFound" */ '@/views/NotFoundView'),
+  },
 ]
 
 const router = createRouter({
